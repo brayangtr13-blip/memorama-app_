@@ -1,0 +1,236 @@
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body {
+ font-family: "Comic Sans MS", "Arial", sans-serif;
+ background: green;
+ padding: 20px;
+ min-height: 100vh;
+
+}
+
+.container {
+ max-width: 900px;
+ margin: 0 auto;
+}
+
+.header{
+ text-align: center;
+ background: rgba(255, 255, 255, 0.911);
+ border-radius: 25px;
+ margin-bottom: 25px;
+ box-shadow: 0 8px 0 black;
+ border: 5px solid silver;
+
+}
+
+h1 {
+ color: green;
+ font-size: 2rem;
+ margin-bottom: 20px;
+}
+
+.stats {
+ display: flex;
+ justify-content: center;
+ gap: 15px;
+ flex-wrap: wrap;
+} 
+
+.stat {
+ background: ghostwhite;
+ color: green;
+ padding: 12px 25px;
+ border-radius: 20px;
+ box-shadow: 0 5px 0 silver;
+ border: 4px solid white;  
+}
+.stat-label {
+ font-size: 0.9rem;
+ margin-bottom: 5px;
+}
+.stat-value{
+ font-size: 1.8rem;
+ font-weight: bold;
+}
+
+.tablero-de-juego{
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 15px;
+margin-bottom: 25px;
+
+}
+
+.card {
+background: transparent;
+aspect-ratio: 1;
+cursor: pointer;
+position: relative;
+transform-style: preserve-3d;
+transition: transform 0.6s;
+}
+
+.card:hover {
+transform: scale(1.08);
+
+}
+
+.card.flipped {
+transform: rotateY(180deg);
+}
+
+.card.flipped:hover {
+transform: rotateY(180deg) scale(1.08);
+}
+
+.card.matched {
+    pointer-events: none;
+}
+
+
+.card-front, 
+.card-back {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+border-radius: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+ 
+}
+
+
+
+
+.card-front {
+ background: white;
+ color: black;
+ font-size: 3.5rem;
+ box-shadow: 0 6px 0 silver;
+ border: 5px solid yellowgreen;
+
+}
+
+.card-back {
+ background: white;
+ transform: rotateY(180deg);
+ overflow: hidden;
+ box-shadow: 0 6px 0 green;
+ border: 5px solid silver;
+
+}
+
+.card-back img {
+ width: 80%;
+ height: 80%;
+ object-fit: cover;
+}
+
+.controls {
+  text-align: center;
+}
+
+.btn {
+  background: green;
+  color: white;
+  border: 5px solid white; 
+  padding: 15px 40px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 6px 0 green;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 green;
+}
+
+.btn:active {
+    transform: translateX(2px);
+    box-shadow: 0 3px 0 green;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 10px silver;
+    border: 6px solid black;
+    animation: bounce 0.5s;
+}
+
+@keyframes bounch {
+    0%, 100% {
+        transform: scale(1);
+    }
+           50% {
+        transform: scale(1.1);    
+    }
+}           
+
+.modal-content h2 {
+    color:rgb(20, 20, 20);
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    color:greenyellow;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+
+}
+    
+@media (max-width: 700px) {
+    .tablero-de-juego {
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+    
+@media (max-width: 480px) {
+    .tablero-de-juego {
+        grid-template-columns: repeat(2, 1fr);
+        gap:10px;
+    }
+
+    h1 {
+        font-size: 1,6rem;
+    }
+
+    .card-front {
+        font-size: 2.5rem;
+    }
+}
+
+

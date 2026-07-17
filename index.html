@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPA MEMORIA / MUNDIAL 2026</title>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>  
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-futbol"></i> COPA MUNDIAL</h1> 
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-label">Movimientos</div>
+                    <div class="stat-value" id="movimientos">0</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Tiempo</div>
+                    <div class="stat-value" id="tiempo">00:00:00</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Parejas</div>
+                    <div class="stat-value" id="parejas">0/10</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tablero-de-juego" id="tablerodejuego"></div>
+            
+       
+
+        <div class="controls">
+            <div class="niveles">
+                <button class="btn btn-nivel activo" onclick="elegirNivel(1)">NIVEL 1</button>
+                <button class="btn btn-nivel" onclick="elegirNivel(2)">NIVEL 2</button>
+                <button class="btn btn-nivel" onclick="elegirNivel(3)">NIVEL 3</button>
+                <button class="btn btn-nivel" onclick="elegirNivel(4)">NIVEL 4</button>
+            </div>
+            <button class="btn" onclick="nuevoJuego()">
+                <i class="fas fa-redo"></i> NUEVO JUEGO
+            </button>
+            <button class="btn" onclick="mostrarTop10()">
+                <i class="fas fa-trophy"></i> TOP 10
+            </button>
+        </div>
+    </div>
+
+    
+    <div class="modal" id="winModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-trophy"></i> ¡Tú ganas!</h2>
+            <p>Movimientos: <span id="finalMovimientos">0</span></p>
+            <p>Tiempo final: <span id="finalTiempo">00:00:00</span></p>
+            <p>Puntuación: <span id="finalPuntos">0</span></p>
+
+            <!-- formulario para guardar el jugador y su puntuacion -->
+            <form class="form-guardar" onsubmit="guardarPuntaje(event)">
+                <label for="nombreJugador">Jugador:</label>
+                <input type="text" id="nombreJugador" placeholder="Tu nombre" maxlength="15" required>
+
+                <label for="puntajeFinal">Puntuación:</label>
+                <input type="text" id="puntajeFinal" readonly>
+
+                <button class="btn" type="submit">
+                    <i class="fas fa-save"></i> GUARDAR
+                </button>
+            </form>
+
+            <button class="btn" onclick="nuevoJuego()">Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- modal con la tabla de los 10 mejores -->
+    <div class="modal" id="topModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-trophy"></i> TOP 10</h2>
+            <table class="tabla-top10">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Jugador</th>
+                        <th>Nivel</th>
+                        <th>Tiempo</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTop10"></tbody>
+            </table>
+            <button class="btn" onclick="cerrarTop10()">Cerrar</button>
+            <button class="btn" onclick="borrarPuntajes()">Borrar todo</button>
+        </div>
+    </div>
+
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
+
+
