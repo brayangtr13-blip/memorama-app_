@@ -3,84 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memorama del Mundial</title>
+    <title>COPA MEMORIA / MUNDIAL 2026</title>
+
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
 <body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-futbol"></i> COPA MUNDIAL</h1>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-label">Movimientos</div>
+                    <div class="stat-value" id="movimientos">0</div>
+                </div>
 
-    <header class="encabezado">
-        <h1>⚽ Memorama del Mundial ⚽</h1>
-        <p>Juego de memoria - Jugadores del mundial</p>
-    </header>
+                <div class="stat">
+                    <div class="stat-label">Tiempo</div>
+                    <div class="stat-value" id="tiempo">00:00:00</div>
+                </div>
 
-    <main>
-
-        <!-- Menu para elegir nivel -->
-        <section id="menu" class="seccion">
-            <h2>Elige el nivel</h2>
-            <div class="niveles">
-                <button onclick="iniciarJuego(1)">Nivel 1<br><small>4 pares</small></button>
-                <button onclick="iniciarJuego(2)">Nivel 2<br><small>6 pares</small></button>
-                <button onclick="iniciarJuego(3)">Nivel 3<br><small>8 pares</small></button>
-                <button onclick="iniciarJuego(4)">Nivel 4<br><small>10 pares</small></button>
+                <div class="stat">
+                    <div class="stat-label">Parejas</div>
+                    <div class="stat-value" id="parejas">0/10</div>
+                </div>
             </div>
-            <button class="btn-secundario" onclick="verPuntajes()">🏆 Ver mejores puntajes</button>
-        </section>
+        </div>
 
-        <!-- Zona del juego -->
-        <section id="juego" class="seccion oculto">
-            <div class="marcador">
-                <span>Nivel: <b id="nivel-actual">1</b></span>
-                <span>Tiempo: <b id="tiempo">0</b>s</span>
-                <span>Movimientos: <b id="movimientos">0</b></span>
-                <span>Pares: <b id="pares">0</b></span>
-            </div>
-            <p id="mensaje" class="mensaje"></p>
-            <div id="tablero" class="tablero"></div>
-            <button class="btn-secundario" onclick="volverMenu()">← Volver al menú</button>
-        </section>
+        <div class="tablero-de-juego" id="tablerodejuego"></div>
 
-        <!-- Formulario para guardar el puntaje -->
-        <section id="guardar" class="seccion oculto">
-            <h2>🎉 ¡Ganaste!</h2>
-            <p>Tu puntuación fue: <b id="puntos-finales">0</b> puntos</p>
-            <form id="formulario" onsubmit="guardarPuntaje(event)">
-                <label for="nombre">Nombre del jugador:</label>
-                <input type="text" id="nombre" maxlength="15" placeholder="Escribe tu nombre" required>
 
-                <label for="puntaje">Puntuación:</label>
-                <input type="text" id="puntaje" readonly>
 
-                <button type="submit">Guardar puntaje</button>
-            </form>
-        </section>
+        <div class="controls">
+            <button class="btn" onclick="nuevoJuego()">
+                <i class="fas fa-redo"></i> NUEVO JUEGO
+            </button>
+        </div>
+    </div>
 
-        <!-- Tabla de los 10 mejores -->
-        <section id="puntajes" class="seccion oculto">
-            <h2>🏆 Los 10 mejores</h2>
-            <table id="tabla-puntajes">
-                <thead>
-                    <tr>
-                        <th>Puesto</th>
-                        <th>Jugador</th>
-                        <th>Nivel</th>
-                        <th>Tiempo</th>
-                        <th>Puntos</th>
-                    </tr>
-                </thead>
-                <tbody id="cuerpo-tabla">
-                </tbody>
-            </table>
-            <button onclick="volverMenu()">Jugar</button>
-            <button class="btn-secundario" onclick="borrarPuntajes()">Borrar todo</button>
-        </section>
 
-    </main>
+    <div class="modal" id="winModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-trophy"></i> ¡Tú ganas!</h2>
+            <p>Movimientos: <span id="finalMovimientos">0</span></p>
+            <p>Tiempo final: <span id="finalTiempo">00:00:00</span></p>
+            <button class="btn" onclick="nuevoJuego()">Reiniciar</button>
+        </div>
+    </div>
 
-    <footer class="pie">
-        <p>Proyecto Memorama - Curso Front-End SENA</p>
-    </footer>
-
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
+
