@@ -1,236 +1,275 @@
-*{
- margin: 0;
- padding: 0;
- box-sizing: border-box;
+/* Estilos del Memorama del Mundial */
+
+/* variables de colores */
+:root {
+    --verde: #2e7d32;
+    --verde-oscuro: #1b5e20;
+    --azul: #1565c0;
+    --amarillo: #fdd835;
+    --blanco: #ffffff;
+    --gris-claro: #f5f5f5;
+    --columnas: 4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
- font-family: "Comic Sans MS", "Arial", sans-serif;
- background: green;
- padding: 20px;
- min-height: 100vh;
-
-}
-
-.container {
- max-width: 900px;
- margin: 0 auto;
-}
-
-.header{
- text-align: center;
- background: rgba(255, 255, 255, 0.911);
- border-radius: 25px;
- margin-bottom: 25px;
- box-shadow: 0 8px 0 black;
- border: 5px solid silver;
-
-}
-
-h1 {
- color: green;
- font-size: 2rem;
- margin-bottom: 20px;
-}
-
-.stats {
- display: flex;
- justify-content: center;
- gap: 15px;
- flex-wrap: wrap;
-} 
-
-.stat {
- background: ghostwhite;
- color: green;
- padding: 12px 25px;
- border-radius: 20px;
- box-shadow: 0 5px 0 silver;
- border: 4px solid white;  
-}
-.stat-label {
- font-size: 0.9rem;
- margin-bottom: 5px;
-}
-.stat-value{
- font-size: 1.8rem;
- font-weight: bold;
-}
-
-.tablero-de-juego{
-display: grid;
-grid-template-columns: repeat(5, 1fr);
-gap: 15px;
-margin-bottom: 25px;
-
-}
-
-.card {
-background: transparent;
-aspect-ratio: 1;
-cursor: pointer;
-position: relative;
-transform-style: preserve-3d;
-transition: transform 0.6s;
-}
-
-.card:hover {
-transform: scale(1.08);
-
-}
-
-.card.flipped {
-transform: rotateY(180deg);
-}
-
-.card.flipped:hover {
-transform: rotateY(180deg) scale(1.08);
-}
-
-.card.matched {
-    pointer-events: none;
-}
-
-
-.card-front, 
-.card-back {
-position: absolute;
-width: 100%;
-height: 100%;
-backface-visibility: hidden;
-border-radius: 20px;
-display: flex;
-justify-content: center;
-align-items: center;
- 
-}
-
-
-
-
-.card-front {
- background: white;
- color: black;
- font-size: 3.5rem;
- box-shadow: 0 6px 0 silver;
- border: 5px solid yellowgreen;
-
-}
-
-.card-back {
- background: white;
- transform: rotateY(180deg);
- overflow: hidden;
- box-shadow: 0 6px 0 green;
- border: 5px solid silver;
-
-}
-
-.card-back img {
- width: 80%;
- height: 80%;
- object-fit: cover;
-}
-
-.controls {
-  text-align: center;
-}
-
-.btn {
-  background: green;
-  color: white;
-  border: 5px solid white; 
-  padding: 15px 40px;
-  border-radius: 20px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 6px 0 green;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 9px 0 green;
-}
-
-.btn:active {
-    transform: translateX(2px);
-    box-shadow: 0 3px 0 green;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal.show {
+    font-family: Verdana, Arial, sans-serif;
+    background: linear-gradient(to bottom, #1b5e20, #2e7d32);
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
 }
 
-.modal-content {
-    background: white;
-    padding: 40px;
-    border-radius: 30px;
+/* encabezado */
+.encabezado {
+    background: var(--azul);
+    color: var(--blanco);
     text-align: center;
-    box-shadow: 0 10px silver;
-    border: 6px solid black;
-    animation: bounce 0.5s;
+    padding: 20px;
+    border-bottom: 4px solid var(--amarillo);
 }
 
-@keyframes bounch {
-    0%, 100% {
-        transform: scale(1);
-    }
-           50% {
-        transform: scale(1.1);    
-    }
-}           
+.encabezado h1 {
+    font-size: 1.8rem;
+}
 
-.modal-content h2 {
-    color:rgb(20, 20, 20);
-    font-size: 2.8rem;
+.encabezado p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* las secciones son las pantallas del juego */
+.seccion {
+    background: var(--blanco);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.oculto {
+    display: none;
+}
+
+h2 {
+    color: var(--verde-oscuro);
     margin-bottom: 20px;
 }
 
-.modal-content p {
-    color:greenyellow;
-    font-size: 1.4rem;
-    margin-bottom: 30px;
+/* botones de niveles */
+.niveles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto 20px;
+}
+
+button {
+    background: var(--verde);
+    color: var(--blanco);
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 1rem;
     font-weight: bold;
-
-}
-    
-@media (max-width: 700px) {
-    .tablero-de-juego {
-        grid-template-columns: repeat(3, 1fr);
-
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-}
-    
-@media (max-width: 480px) {
-    .tablero-de-juego {
-        grid-template-columns: repeat(2, 1fr);
-        gap:10px;
-    }
-
-    h1 {
-        font-size: 1,6rem;
-    }
-
-    .card-front {
-        font-size: 2.5rem;
-    }
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
+button:hover {
+    background: var(--verde-oscuro);
+}
 
+.btn-secundario {
+    background: var(--azul);
+    margin-top: 10px;
+}
+
+.btn-secundario:hover {
+    background: #0d47a1;
+}
+
+/* marcador del juego */
+.marcador {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: var(--gris-claro);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.marcador b {
+    color: var(--verde-oscuro);
+}
+
+.mensaje {
+    color: #e65100;
+    font-weight: bold;
+    min-height: 22px;
+    margin-bottom: 10px;
+}
+
+/* tablero de cartas con grid */
+.tablero {
+    display: grid;
+    grid-template-columns: repeat(var(--columnas), 90px);
+    gap: 10px;
+    justify-content: center;
+    padding: 15px 0;
+    perspective: 800px;
+}
+
+/* cartas con efecto de volteo 3D */
+.carta {
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+}
+
+.carta.volteada {
+    transform: rotateY(180deg);
+}
+
+.cara {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--verde-oscuro);
+}
+
+/* la parte de atras de la carta */
+.cara.atras {
+    background: var(--azul);
+    color: var(--blanco);
+    font-size: 2rem;
+}
+
+/* la parte de adelante con la imagen */
+.cara.adelante {
+    background: var(--blanco);
+    transform: rotateY(180deg);
+}
+
+.cara.adelante img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.carta.encontrada {
+    cursor: default;
+}
+
+.carta.encontrada .cara.adelante {
+    border-color: var(--amarillo);
+    box-shadow: 0 0 10px var(--amarillo);
+}
+
+/* formulario de guardado */
+form {
+    max-width: 350px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    color: var(--verde-oscuro);
+}
+
+input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--verde);
+}
+
+input[readonly] {
+    background: var(--gris-claro);
+    font-weight: bold;
+    color: var(--azul);
+}
+
+/* tabla de puntajes */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th {
+    background: var(--verde-oscuro);
+    color: var(--blanco);
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* filas intercaladas */
+tbody tr:nth-child(even) {
+    background: var(--gris-claro);
+}
+
+/* pie de pagina */
+.pie {
+    text-align: center;
+    color: var(--blanco);
+    padding: 15px;
+    font-size: 0.85rem;
+}
+
+/* para celulares */
+@media (max-width: 600px) {
+    .tablero {
+        grid-template-columns: repeat(var(--columnas), 60px);
+        gap: 6px;
+    }
+
+    .carta {
+        width: 60px;
+        height: 60px;
+    }
+
+    .marcador {
+        gap: 10px;
+        font-size: 0.85rem;
+    }
+}
