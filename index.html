@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COPA MEMORIA / MUNDIAL 2026</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -26,19 +29,37 @@
 
                 <div class="stat">
                     <div class="stat-label">Parejas</div>
-                    <div class="stat-value" id="parejas">0/10</div>
+                    <div class="stat-value" id="parejas">0/0</div>
                 </div>
             </div>
         </div>
 
+        <form class="selector-nivel" onsubmit="empezarNivel(event)">
+            <label for="nivelSelect">Elige el nivel:</label>
+            <select id="nivelSelect">
+                <option value="octavos">Octavos - 4 parejas</option>
+                <option value="cuartos">Cuartos - 6 parejas</option>
+                <option value="semifinal">Semifinal - 8 parejas</option>
+                <option value="final">Final - 10 parejas</option>
+            </select>
+            <button class="btn" type="submit">
+                <i class="fas fa-play"></i> JUGAR
+            </button>
+        </form>
+
         <div class="tablero-de-juego" id="tablerodejuego"></div>
+
+        <p id="mensajeInicio" class="mensaje-inicio">Elige un nivel y pulsa JUGAR para empezar</p>
 
 
 
         <div class="controls">
-            <button class="btn" onclick="nuevoJuego()">
-                <i class="fas fa-redo"></i> NUEVO JUEGO
+            <button class="btn" onclick="reiniciar()">
+                <i class="fas fa-redo"></i> REINICIAR
             </button>
+
+            <button class="btn" id="btnPausa" onclick="pausarJuego()">
+                <i class="fas fa-pause"></i> PAUSAR </button>
         </div>
     </div>
 
@@ -48,7 +69,38 @@
             <h2><i class="fas fa-trophy"></i> ¡Tú ganas!</h2>
             <p>Movimientos: <span id="finalMovimientos">0</span></p>
             <p>Tiempo final: <span id="finalTiempo">00:00:00</span></p>
+           
+            <p>Puntuación: <span id="finalPuntos">0</span></p>
+
+            <form id="formGuardar" onsubmit="guardarPuntaje(event)">
+            <input type="text" id="nombreJugador" placeholder="Escribe tu nombre" maxlength="15" required>
+
+            <button class="btn" type="submit">
+                <i class="fas fa-save"></i> GUARDAR PUNTAJE
+            </button>
+        </form>
+           
             <button class="btn" onclick="nuevoJuego()">Reiniciar</button>
+        </div>
+    </div>
+
+    <div class="modal" id="topModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-trophy"></i> TOP 10 MEJORES</h2>
+            <table class="tabla-top10">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Jugador</th>
+                        <th>Mov.</th>
+                        <th>Tiempo</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTop10"></tbody>
+            </table>
+            <button class="btn" onclick="cerrarTop10()">Cerrar</button>
+            <button class="btn" onclick="borrarPuntajes()">Borrar todo</button>
         </div>
     </div>
 

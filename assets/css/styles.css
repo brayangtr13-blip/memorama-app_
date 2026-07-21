@@ -5,7 +5,7 @@
 }
 
 body {
- font-family: "Comic Sans MS", "Arial", sans-serif;
+ font-family: "Oswald", "Arial", sans-serif;
  background: green;
  padding: 20px;
  min-height: 100vh;
@@ -29,7 +29,10 @@ body {
 
 h1 {
  color: green;
- font-size: 2rem;
+ font-family: "Anton", sans-serif;
+ font-size: 2.6rem;
+ letter-spacing: 2px;
+ text-transform: uppercase;
  margin-bottom: 20px;
 }
 
@@ -132,6 +135,17 @@ align-items: center;
  object-fit: cover;
 }
 
+.mensaje-inicio {
+  text-align: center;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 40px 20px;
+  margin-bottom: 25px;
+}
+
 .controls {
   text-align: center;
 }
@@ -139,10 +153,13 @@ align-items: center;
 .btn {
   background: green;
   color: white;
-  border: 5px solid white; 
+  border: 5px solid white;
   padding: 15px 40px;
   border-radius: 20px;
+  font-family: "Anton", sans-serif;
   font-size: 1.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   cursor: pointer;
   box-shadow: 0 6px 0 green;
   transition: all 0.3s ease;
@@ -179,12 +196,12 @@ align-items: center;
     padding: 40px;
     border-radius: 30px;
     text-align: center;
-    box-shadow: 0 10px silver;
-    border: 6px solid black;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    border: 6px solid silver;
     animation: bounce 0.5s;
 }
 
-@keyframes bounch {
+@keyframes bounce {
     0%, 100% {
         transform: scale(1);
     }
@@ -194,17 +211,31 @@ align-items: center;
 }           
 
 .modal-content h2 {
-    color:rgb(20, 20, 20);
+    color: green;
+    font-family: "Anton", sans-serif;
     font-size: 2.8rem;
-    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
 }
 
 .modal-content p {
-    color:greenyellow;
-    font-size: 1.4rem;
-    margin-bottom: 30px;
+    color: green;
+    font-size: 1.3rem;
+    margin-bottom: 14px;
     font-weight: bold;
+}
 
+.modal-content #finalPuntos {
+    font-size: 1.7rem;
+}
+
+#winModal .modal-content p:has(#finalPuntos) {
+    background: ghostwhite;
+    border: 4px solid silver;
+    border-radius: 15px;
+    padding: 12px;
+    margin-bottom: 25px;
 }
     
 @media (max-width: 700px) {
@@ -225,7 +256,7 @@ align-items: center;
     }
 
     h1 {
-        font-size: 1,6rem;
+        font-size: 1.6rem;
     }
 
     .card-front {
@@ -233,4 +264,96 @@ align-items: center;
     }
 }
 
+#formGuardar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+}
 
+#formGuardar input {
+    padding: 12px;
+    border: 4px solid silver;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-family: inherit;
+    text-align: center;
+}
+
+#formGuardar input:focus {
+    outline: none;
+    border-color: green;
+}
+
+.selector-nivel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.911);
+    border: 5px solid silver;
+    border-radius: 25px;
+    box-shadow: 0 8px 0 black;
+    padding: 18px;
+    margin-bottom: 25px;
+}
+
+.selector-nivel label {
+    color: green;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.selector-nivel select {
+    padding: 12px 18px;
+    border: 4px solid silver;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    color: green;
+    font-weight: bold;
+    background: ghostwhite;
+    cursor: pointer;
+}
+
+.selector-nivel select:focus {
+    outline: none;
+    border-color: green;
+}
+
+.selector-nivel .btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+}
+
+.tabla-top10 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.tabla-top10 th {
+    background: green;
+    color: white;
+    padding: 10px;
+    border: 3px solid white;
+    font-size: 1rem;
+}
+
+.tabla-top10 td {
+    padding: 10px;
+    color: green;
+    font-weight: bold;
+    border-bottom: 2px solid silver;
+    font-size: 1rem;
+}
+
+.tabla-top10 tr:nth-child(even) {
+    background: ghostwhite;
+}
+
+#topModal .modal-content {
+    max-width: 500px;
+    width: 90%;
+}
